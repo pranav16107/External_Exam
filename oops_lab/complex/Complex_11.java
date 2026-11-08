@@ -1,5 +1,4 @@
-package complex;
-
+package oops_lab.complex;
 class Student {
     int id;
     String name;

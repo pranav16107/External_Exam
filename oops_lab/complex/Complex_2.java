@@ -1,12 +1,10 @@
-package oops_lab.complex;
-
 import java.util.Random;
 class RandomNUmber extends Thread {
     @Override
     public void run() {
         Random r = new Random();
         while (true) {
-            int n = r.nextInt(100);
+            int n = r.nextInt(10);
             System.out.println("\nGenerated Number: " + n);
             if (n % 2 == 0) {
                 new Square(n).start();
