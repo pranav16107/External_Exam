@@ -1,3 +1,5 @@
+# * 2. Write a Python program to find the real root of a given algebraic equation using the Newton-Raphson Method. Consider the following equation:F(x) = x**3-4*x-9.
+
 # Newton-Raphson Method
 def f(x):
     return x**3 - 4*x - 9

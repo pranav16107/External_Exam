@@ -1,62 +1,83 @@
+#* 3. Write a Python program to obtain the symmetric matrix from a given quadratic 
+#* form and orthogonalize the matrix using eigenvalues and eigenvectors. Consider the 
+#* following quadratic form: Q(x, y, z) = x2 + 5y2  + z2  + 2xy + 6xz + 2yz.
+
 import sympy as sp
 
-# Create the symmetric matrix
+# Step 1: Create symmetric matrix
 A = sp.Matrix([[1, 1, 3],
                [1, 5, 1],
                [3, 1, 1]])
 
-print("1. Symmetric Matrix:")
+print("Symmetric Matrix A:")
 sp.pprint(A)
 
-# Find eigenvalues and eigenvectors
+# Step 2: Find eigenvalues and eigenvectors
 result = A.eigenvects()
 
-print("\n2. Eigenvalues with Multiplicity:")
-for value, multiplicity, vectors in result:
-    print("Eigenvalue:", value, "Multiplicity:", multiplicity)
+values = []
+vectors = []
 
-# Find eigenvectors
-print("\n3. Eigenvectors:")
-for value, multiplicity, vectors in result:
-    print("For Eigenvalue:", value)
-    sp.pprint(vectors[0])
+print("\nEigenvalues and Eigenvectors:")
 
-# Normalize eigenvectors
-print("\n4. Normalized Eigenvectors:")
+for value, mult, vec in result:
+    print("Eigenvalue =", value)
+    print("Eigenvector:")
+    sp.pprint(vec[0])
 
+    values.append(value)
+    vectors.append(vec[0])
+
+# Step 3: Normalize eigenvectors
 normal_vectors = []
-diagonal_values = []
 
-for value, multiplicity, vectors in result:
-    vector = vectors[0]
-    normal = vector / vector.norm()
-
+for v in vectors:
+    normal = v / v.norm()
     normal_vectors.append(normal)
-    diagonal_values.append(value)
 
-    print("For Eigenvalue:", value)
-    sp.pprint(normal)
+print("\nNormalized Eigenvectors:")
+for v in normal_vectors:
+    sp.pprint(v)
 
-# Form orthogonal matrix
+# Step 4: Form orthogonal matrix P
 P = sp.Matrix.hstack(*normal_vectors)
 
-print("\n5. Orthogonal Matrix P:")
+print("\nOrthogonal Matrix P:")
 sp.pprint(P)
 
-# Form diagonal matrix
-D = sp.diag(*diagonal_values)
+# Step 5: Form diagonal matrix D
+D = sp.diag(*values)
 
-print("\n6. Diagonal Matrix D:")
+print("\nDiagonal Matrix D:")
 sp.pprint(D)
 
-# Verification
-print("\n7. Verification:")
+# Step 6: Verify orthogonal diagonalization
+print("\nP transpose * P:")
+sp.pprint(sp.simplify(P.T * P))
 
-print("P transpose * P =")
-sp.pprint(P.T * P)
+print("\nP transpose * A * P:")
+sp.pprint(sp.simplify(P.T * A * P))
 
-print("\nP transpose * A * P =")
-sp.pprint(P.T * A * P)
+# Step 7: Transform quadratic form
+y1, y2, y3 = sp.symbols('y1 y2 y3')
+Y = sp.Matrix([y1, y2, y3])
 
-print("\nIs P transpose * A * P equal to D?")
-print(sp.simplify(P.T * A * P) == D)
+X = P * Y
+
+print("\nTransformation X = PY:")
+sp.pprint(X)
+
+original = (X.T * A * X)[0]
+diagonal = (Y.T * D * Y)[0]
+
+print("\nOriginal Quadratic Form:")
+sp.pprint(sp.expand(original))
+
+print("\nDiagonal Quadratic Form:")
+sp.pprint(diagonal)
+
+# Final verification
+if sp.simplify(original - diagonal) == 0:
+    print("\nVerification Successful")
+else:
+    print("\nVerification Failed")

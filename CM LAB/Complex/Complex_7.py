@@ -1,4 +1,6 @@
-
+#* 8. Write a Python program to solve and identify whether a given differential equation 
+#* is Exact or Non-Exact using partial differentiation. Consider the following differential 
+#* equation: M(x, y)dx + N(x, y)dy Where,M(x, y) = 5x4+ 3x2y2 - 2xy3 N(x, y) = 2x3y-3x2y2-5y4. 
 import sympy as sp
 
 # Define variables

@@ -1,3 +1,5 @@
+#* 4.Write a Python program to solve a given homogeneous ordinary differential equation (ODE) . Consider the following differential equation:dy/dx = x+y/x-y
+
 import sympy as sp
 
 # Define variables and function

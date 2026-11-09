@@ -1,4 +1,8 @@
-
+#* 2. Write a Python program to calculate the eigenvalues and eigenvectors of a 
+#* dynamically generated 3 × 3 matrix. Consider the following matrix: 
+#* A = [ [ 2  0  0] 
+#* [0  3  1] 
+#* [0  1  3] ]. 
 import sympy as sp
 
 # Define matrix

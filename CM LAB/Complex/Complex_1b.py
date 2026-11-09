@@ -1,35 +1,28 @@
-import numpy as np
-from sympy import symbols, Eq, solve
+# *(b) Case 2: Infinite Solutions
+# * Consider the following system of non-homogeneous linear equations:2x+y=4 4x+2y=8.
+import sympy as sp
 
-# Coefficient matrix
-A = np.array([[2, 1],
-              [4, 2]])
+A = sp.Matrix([[2, 1],
+               [4, 2]])
 
-# Constant matrix
-B = np.array([4, 8])
+B = sp.Matrix([4, 8])
 
-# Check rank
-rank_A = np.linalg.matrix_rank(A)
-rank_AB = np.linalg.matrix_rank(np.column_stack((A, B)))
+r1 = A.rank()
+r2 = A.row_join(B).rank()
 
-num_vars = A.shape[1]
+print("Rank of A:", r1)
+print("Rank of [A|B]:", r2)
+print("Degree of Freedom:", A.cols - r1)
 
-print("Rank of A:", rank_A)
-print("Rank of [A|B]:", rank_AB)
-print("Number of variables:", num_vars)
-print("Degree of freedom:", num_vars - rank_A)
-
-# Check infinite solutions
-if rank_A == rank_AB and rank_A < num_vars:
-    print("Infinite Solutions: True")
+if r1 != r2:
+    print("No Solution")
+elif r1 == A.cols:
+    print("Unique Solution")
 else:
-    print("Infinite Solutions: False")
+    print("Infinite Solutions")
 
-# SymPy solution
-x, y = symbols('x y')
-
-eq1 = Eq(2*x + y, 4)
-eq2 = Eq(4*x + 2*y, 8)
-
-solution = solve([eq1, eq2], [x, y])
-print("SymPy Solution:", solution)
+x, y = sp.symbols('x y')
+eq1=2*x+y-4
+eq2=4*x+2*y-8
+solution=sp.solve([eq1, eq2], [x, y])
+print("Solution:",solution )

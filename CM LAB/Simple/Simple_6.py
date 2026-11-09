@@ -1,3 +1,6 @@
+#* 6.	Write a Python program to calculate the partial derivatives and Jacobian of a given function involving several variables using the SymPy library. Consider the following function:
+#* F(x, y, z) = x^2y + y^2z^2+ sin(xz)   
+
 import sympy as sp
 
 # Define variables

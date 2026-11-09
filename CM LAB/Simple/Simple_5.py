@@ -1,3 +1,5 @@
+# * Write a Python program to solve a given non-homogeneous ordinary differential equation (ODE) using the appropriate mathematical method. Consider the following differential equation:d ^ 2 * y / d * x ^ 2 - 3 * d/dx (y) + 2y = e ^ x
+
 import sympy as sp
 
 # Define variables and function

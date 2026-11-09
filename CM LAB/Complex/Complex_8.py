@@ -1,4 +1,6 @@
-
+#* 9. Write a Python program to find the maxima and minima of a given function of two 
+#* variables using partial differentiation and the second-order derivative test. Consider 
+#* the following function: f(x, y) = x2 + y2 - xy - 6y + 13.
 import sympy as sp
 
 # Define variables

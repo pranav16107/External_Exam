@@ -1,5 +1,9 @@
-
-# Gauss-Seidel Iterative Method
+#* 6. Write a Python program to find the solution of a given system of linear equations 
+#* using the Gauss-Seidel Iterative Method. Consider the following system of linear 
+#* equations:10x + y + z = 12,2x + 10y + z = 13,2x + 2y + 10z = 14 
+#* Take the initial approximations as: X0 = 0, Y0 = 0, Z0 = 0 
+#* Take the tolerance value as: ϵ = 0.000001.
+#* Gauss-Seidel Iterative Method
 
 # Initial values
 x = 0
