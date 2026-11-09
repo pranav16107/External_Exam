@@ -2,25 +2,26 @@
 #* form and orthogonalize the matrix using eigenvalues and eigenvectors. Consider the 
 #* following quadratic form: Q(x, y, z) = x2 + 5y2  + z2  + 2xy + 6xz + 2yz.
 
+
 import sympy as sp
 
-# Step 1: Create symmetric matrix
+# Step 1: Create matrix
 A = sp.Matrix([[1, 1, 3],
                [1, 5, 1],
                [3, 1, 1]])
 
-print("Symmetric Matrix A:")
+print("Given Matrix A:")
 sp.pprint(A)
 
 # Step 2: Find eigenvalues and eigenvectors
-result = A.eigenvects()
+data = A.eigenvects()
 
 values = []
 vectors = []
 
 print("\nEigenvalues and Eigenvectors:")
 
-for value, mult, vec in result:
+for value, mult, vec in data:
     print("Eigenvalue =", value)
     print("Eigenvector:")
     sp.pprint(vec[0])
@@ -32,52 +33,53 @@ for value, mult, vec in result:
 normal_vectors = []
 
 for v in vectors:
-    normal = v / v.norm()
-    normal_vectors.append(normal)
+    u = sp.simplify(v / sp.sqrt((v.T*v)[0]))
+    normal_vectors.append(u)
 
-print("\nNormalized Eigenvectors:")
+print("\nNormalized Vectors:")
 for v in normal_vectors:
     sp.pprint(v)
 
-# Step 4: Form orthogonal matrix P
+# Step 4: Create orthogonal matrix P
 P = sp.Matrix.hstack(*normal_vectors)
 
 print("\nOrthogonal Matrix P:")
 sp.pprint(P)
 
-# Step 5: Form diagonal matrix D
+# Step 5: Create diagonal matrix D
 D = sp.diag(*values)
 
 print("\nDiagonal Matrix D:")
 sp.pprint(D)
 
-# Step 6: Verify orthogonal diagonalization
+# Step 6: Check matrices
 print("\nP transpose * P:")
 sp.pprint(sp.simplify(P.T * P))
 
 print("\nP transpose * A * P:")
 sp.pprint(sp.simplify(P.T * A * P))
 
-# Step 7: Transform quadratic form
+# Step 7: Change variables X = PY
 y1, y2, y3 = sp.symbols('y1 y2 y3')
 Y = sp.Matrix([y1, y2, y3])
 
-X = P * Y
+X = sp.simplify(P * Y)
 
-print("\nTransformation X = PY:")
+print("\nNew Variables X = PY:")
 sp.pprint(X)
 
-original = (X.T * A * X)[0]
-diagonal = (Y.T * D * Y)[0]
+# Step 8: Find quadratic forms
+q1 = sp.simplify((X.T * A * X)[0])
+q2 = sp.simplify((Y.T * D * Y)[0])
 
 print("\nOriginal Quadratic Form:")
-sp.pprint(sp.expand(original))
+sp.pprint(q1)
 
 print("\nDiagonal Quadratic Form:")
-sp.pprint(diagonal)
+sp.pprint(q2)
 
-# Final verification
-if sp.simplify(original - diagonal) == 0:
-    print("\nVerification Successful")
+# Step 9: Final check
+if sp.simplify(q1 - q2) == 0:
+    print("\nVERIFIED")
 else:
-    print("\nVerification Failed")
+    print("\nNOT VERIFIED")
