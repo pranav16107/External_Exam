@@ -1,41 +1,61 @@
 #* 3. Write a Python program to find the maxima and minima of a given function of two 
 #* variables using partial differentiation and the second-order derivative test. Consider 
 #* the following function: f(x, y) = x2 + y2  - 4x - 6y  +13.
+
 import sympy as sp
 
+# Define variables
 x, y = sp.symbols('x y')
 
+# Given function
 f = x**2 + y**2 - 4*x - 6*y + 13
 
-# First partial derivatives
+print("Given Function:")
+print("f(x,y) =", f)
+
+# First order partial derivatives
 fx = sp.diff(f, x)
 fy = sp.diff(f, y)
 
-print("First Derivatives:", fx, fy)
+print("\nFirst Partial Derivatives:")
+print("fx =", fx)
+print("fy =", fy)
 
-# Critical point
-p = sp.solve([fx, fy], (x, y))
-print("Critical Point:", p)
+# Find critical points
+critical_points = sp.solve([fx, fy], (x, y))
 
-# Second partial derivatives
-fxx = sp.diff(f, x, 2)
-fyy = sp.diff(f, y, 2)
-fxy = sp.diff(f, x, y)
+print("\nCritical Points:")
+print(critical_points)
 
-print("Second Derivatives:", fxx, fyy, fxy)
+# Second order partial derivatives
+fxx = sp.diff(fx, x)
+fyy = sp.diff(fy, y)
+fxy = sp.diff(fx, y)
 
-# Discriminant
-D = fxx*fyy - fxy**2
-print("Discriminant:", D)
+print("\nSecond Partial Derivatives:")
+print("fxx =", fxx)
+print("fyy =", fyy)
+print("fxy =", fxy)
 
-print("Function Value:", f.subs(p))
+# Second derivative test
+D = fxx * fyy - fxy**2
 
-# Result
+print("\nDiscriminant D =", D)
+
+# Check critical point
+x_value = critical_points[x]
+y_value = critical_points[y]
+
+function_value = f.subs({x: x_value, y: y_value})
+
+print("\nCritical Point:", (x_value, y_value))
+print("Function Value:", function_value)
+
 if D > 0 and fxx > 0:
-    print("Local Minimum")
+    print("Result: Local Minimum")
 elif D > 0 and fxx < 0:
-    print("Local Maximum")
+    print("Result: Local Maximum")
 elif D < 0:
-    print("Saddle Point")
+    print("Result: Saddle Point")
 else:
-    print("Inconclusive")
+    print("Result: Test is Inconclusive")

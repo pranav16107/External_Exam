@@ -14,7 +14,7 @@ solution = sp.dsolve(eq, y)
 
 # Display the solution
 print("Given Differential Equation:")
-print(eq)
+sp.pprint(eq)
 
 print("\nSolution:")
-print(solution)
+sp.pprint(solution)
