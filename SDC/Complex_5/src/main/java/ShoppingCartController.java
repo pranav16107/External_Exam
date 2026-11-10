@@ -1,6 +1,4 @@
 
-package week7;
-
 import java.io.*;
 import java.sql.*;
 import javax.servlet.*;
@@ -10,39 +8,30 @@ import javax.servlet.annotation.WebServlet;
 @WebServlet("/ShoppingCartController")
 public class ShoppingCartController extends HttpServlet {
 
-    // Opens login page when servlet URL is accessed directly
-    protected void doGet(HttpServletRequest request,
-                         HttpServletResponse response)
-                         throws ServletException, IOException {
-
-        response.sendRedirect("login.html");
+    public void doGet(HttpServletRequest req, HttpServletResponse res)
+            throws IOException, ServletException {
+        res.sendRedirect("login.html");
     }
 
-    // Checks login details
-    protected void doPost(HttpServletRequest request,
-                          HttpServletResponse response)
-                          throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res)
+            throws IOException, ServletException {
 
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
 
-        String username = request.getParameter("userName");
-        String password = request.getParameter("password");
+        String username = req.getParameter("userName");
+        String password = req.getParameter("password");
 
         try {
-            // Load MySQL driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Connect to database
             Connection con = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/week7",
                 "root",
                 "Pranav@2007"
             );
 
-            // Check username and password
             String sql = "SELECT * FROM users WHERE username=? AND password=?";
-
             PreparedStatement ps = con.prepareStatement(sql);
 
             ps.setString(1, username);
@@ -50,21 +39,17 @@ public class ShoppingCartController extends HttpServlet {
 
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
-                out.println("<h2>" + username +
-                            ": Welcome to Home Page</h2>");
-                out.println("<h3>Login Successful</h3>");
-            } else {
-                out.println("<h2>Please enter correct Username or Password</h2>");
-                out.println("<h3>Login Failed</h3>");
-            }
+            if (rs.next())
+                out.println("Login Successful. Welcome " + username);
+            else
+                out.println("Login Failed. Invalid Username or Password");
 
             rs.close();
             ps.close();
             con.close();
 
         } catch (Exception e) {
-            out.println("<h3>Error: " + e.getMessage() + "</h3>");
+            out.println("Error: " + e.getMessage());
         }
     }
 }
