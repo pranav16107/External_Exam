@@ -1,16 +1,15 @@
 
 body {
-    font-family: Arial;
     text-align: center;
-    margin-top: 50px;
+    font-family: Arial;
+    background: lightgray;
 }
 
 input, button {
     padding: 10px;
-    margin: 5px;
+    margin: 10px;
 }
 
 canvas {
     max-width: 600px;
-    margin: 30px auto;
 }
