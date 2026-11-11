@@ -1,2 +1,3 @@
-2026/11/10-18:33:57.658 6a28 Creating DB C:\Users\pranav\OneDrive\Desktop\Internal_exam\sdc_lab\StudentCRUD\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Sync Data\LevelDB since it was missing.
-2026/11/10-18:33:57.680 6a28 Reusing MANIFEST C:\Users\pranav\OneDrive\Desktop\Internal_exam\sdc_lab\StudentCRUD\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Sync Data\LevelDB/MANIFEST-000001
+2026/11/11-07:23:46.029 ff8 Reusing MANIFEST C:\Users\pranav\OneDrive\Desktop\External_Exam\SDC\StudentCRUD\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Sync Data\LevelDB/MANIFEST-000001
+2026/11/11-07:23:46.030 ff8 Recovering log #3
+2026/11/11-07:23:46.031 ff8 Reusing old log C:\Users\pranav\OneDrive\Desktop\External_Exam\SDC\StudentCRUD\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Sync Data\LevelDB/000003.log 

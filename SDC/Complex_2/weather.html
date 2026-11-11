@@ -1,19 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
+  <head>
     <title>Weather App</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
+  </head>
+  <body>
+    <h2>Weather App</h2>
 
-<h2>Weather App</h2>
+    <input id="city" value="Hyderabad" />
+    <button onclick="getWeather()">Get Weather</button>
 
-<input id="city" value="Hyderabad">
-<button onclick="getWeather()">Get Weather</button>
+    <canvas id="chart"></canvas>
 
-<canvas id="chart"></canvas>
-
-<script src="script.js"></script>
-
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
