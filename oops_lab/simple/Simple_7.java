@@ -31,7 +31,7 @@ class Circle extends Shape {
         System.out.println("Area of Circle: " + (Math.PI * a * a));
     }
 }
-public class simple_8 {
+public class Simple_7 {
     public static void main(String[] args) {
         Rectangle r = new Rectangle(10, 5);
         Triangle t = new Triangle(10, 5);
